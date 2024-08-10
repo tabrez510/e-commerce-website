@@ -1,46 +1,51 @@
-import { Table, Image, Form, Button } from "react-bootstrap";
+import React, {useContext} from "react";
+import { Table } from "react-bootstrap";
 import CustomModal from "../Modal/Modal";
+import CartItem from "./CartItem";
+import CartContext from "../../store/cart-context";
 
-const cartElements = [
-  {
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-  {
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
+// const cartElements = [
+//   {
+//     title: "Colors",
+//     price: 100,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+//     quantity: 2,
+//   },
+//   {
+//     title: "Black and white Colors",
+//     price: 50,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+//     quantity: 3,
+//   },
+//   {
+//     title: "Yellow and Black Colors",
+//     price: 70,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+//     quantity: 1,
+//   },
+//   {
+//     title: "Colors",
+//     price: 100,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+//     quantity: 2,
+//   },
+//   {
+//     title: "Black and white Colors",
+//     price: 50,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+//     quantity: 3,
+//   },
+//   {
+//     title: "Yellow and Black Colors",
+//     price: 70,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+//     quantity: 1,
+//   },
+// ];
 
 const Cart = (props) => {
+  const cartCtx = useContext(CartContext);
+  const cartElements = cartCtx.items;
   return (
     <CustomModal {...props}>
       <Table responsive>
@@ -53,26 +58,7 @@ const Cart = (props) => {
         </thead>
         <tbody>
           {cartElements.map((cart) => {
-            return (
-              <tr key={cart.title}>
-                <td>
-                  <Image
-                    src={cart.imageUrl}
-                    fluid
-                    rounded
-                    style={{ maxHeight: "2rem", objectFit: "cover" }}
-                  />
-                  <span className="ms-2">{cart.title}</span>
-                </td>
-                <td>{cart.price}</td>
-                <td className="d-flex flex-row justify-content-between align-items-center">
-                  <Form.Control size="sm" type="number" defaultValue={1} style={{maxWidth: '3rem'}}/>
-                  <Button variant="danger" size="sm">
-                    REMOVE
-                  </Button>
-                </td>
-              </tr>
-            );
+            return <CartItem key={cart.id} cart={cart} />
           })}
           <tr>
             <td></td>
