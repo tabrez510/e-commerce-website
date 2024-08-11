@@ -6,8 +6,9 @@ const CardItem = (props) => {
 
     const cartCtx = useContext(CartContext);
     const addToCart = () => {
-        // console.log(props);
+        console.log(props.product);
         cartCtx.addToCart(props.product);
+        console.log(cartCtx.items);
     }
     return(
         <Col key={props.product.id} className="d-flex justify-content-center">
