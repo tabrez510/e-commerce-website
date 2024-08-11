@@ -3,14 +3,13 @@ import { Table, Modal, Button } from "react-bootstrap";
 import CartItem from "./CartItem";
 import CartContext from "../../store/cart-context";
 
-
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const cartElements = cartCtx.items;
   let totalAmount = cartElements.reduce((acc, cart) => {
-    acc = acc + Number(cart.quantity)*Number(cart.price);
+    acc = acc + Number(cart.quantity) * Number(cart.price);
     return acc;
-  }, 0)
+  }, 0);
   return (
     <Modal show={props.show} onHide={props.onClose}>
       <Modal.Header closeButton>
@@ -29,14 +28,18 @@ const Cart = (props) => {
             {cartElements.map((cart) => {
               return <CartItem key={cart.id} cart={cart} />;
             })}
+          </tbody>
+          <tfoot>
             <tr>
               <td></td>
               <td></td>
               <td>
-                <h5>Total: <span>{totalAmount}</span></h5>
+                <h5>
+                  Total: <span>{totalAmount}</span>
+                </h5>
               </td>
             </tr>
-          </tbody>
+          </tfoot>
         </Table>
       </Modal.Body>
       <Modal.Footer>
