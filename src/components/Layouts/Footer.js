@@ -20,25 +20,25 @@ function Footer() {
               href="https://www.youtube.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-dark me-3"
+              className="text-white me-5"
             >
-              <FontAwesomeIcon icon={faYoutube} size="2x" style={{color: "white"}} />
+              <FontAwesomeIcon icon={faYoutube} size="2x" />
             </a>
             <a
               href="https://www.spotify.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-dark me-3"
+              className="text-white me-5"
             >
-              <FontAwesomeIcon icon={faSpotify} size="2x" style={{color: "white"}} />
+              <FontAwesomeIcon icon={faSpotify} size="2x" />
             </a>
             <a
               href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-dark"
+              className="text-white text"
             >
-              <FontAwesomeIcon icon={faFacebook} size="2x" style={{color: "white"}} />
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
             </a>
           </Col>
         </Row>

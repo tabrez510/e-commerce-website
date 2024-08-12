@@ -20,7 +20,7 @@ const Tours = () => {
               <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>{tour.city}</td>
               <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>{tour.venue}</td>
               <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>
-                <Button variant="primary" className="mt-1 mb-1" size="sm">BUT TICKETS</Button>
+                <Button className="mt-1 mb-1" size="sm" style={{backgroundColor:"#0d6efd", color:"#F2F7FD"}}>BUY TICKETS</Button>
               </td>
             </tr>
           );

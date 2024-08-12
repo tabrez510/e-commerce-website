@@ -5,7 +5,7 @@ import { Image, Form, Button } from "react-bootstrap";
 const CartItem = (props) => {
     const cartCtx = useContext(CartContext);
     const quanityChangeHandler = (event) =>{
-        if(Number(event.target.value) >= 1){
+        if(Number(event.target.value) >= 0){
             cartCtx.addToCartWithQuantity({...props.cart, quantity: Number(event.target.value)});
             console.log(cartCtx.items);
         }
