@@ -38,6 +38,8 @@ const Login = () => {
       }
       
       authCtx.login(data.idToken);
+      emailInputRef.current.value = '';
+      passwordInputRef.current.value = '';
       navigate('/store');
 
     } catch (err) {

@@ -7,12 +7,12 @@ const AuthProvider = (props) => {
 
   const isLoggedIn = !!token;
   const login = (token) => {
-    localStorage.setItem("token", token);
+    localStorage.setItem("Token", token);
     setToken(token);
   };
   const logout = () => {
     setToken(null);
-    localStorage.removeItem("token");
+    localStorage.removeItem("Token");
   };
 
   const contextValue = {
