@@ -12,19 +12,36 @@ const Tours = () => {
   return (
     <Container className="mt-3">
       <h1 className="text-center">TOURS</h1>
-      <Table responsive style={{margin:'3.2rem auto', maxWidth: '45rem'}}>
-        {tourList.map((tour) => {
-          return (
-            <tr className="border-bottom border-black align-items-center">
-              <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>{tour.date}</td>
-              <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>{tour.city}</td>
-              <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>{tour.venue}</td>
-              <td style={{whiteSpace: "nowrap", paddingLeft: '20px'}}>
-                <Button className="mt-1 mb-1" size="sm" style={{backgroundColor:"#0d6efd", color:"#F2F7FD"}}>BUY TICKETS</Button>
-              </td>
-            </tr>
-          );
-        })}
+      <Table responsive style={{ margin: "1.7rem auto", maxWidth: "45rem" }}>
+        <tbody>
+          {tourList.map((tour) => {
+            return (
+              <tr
+                key={tour.city}
+                className="border-bottom border-black align-items-center"
+              >
+                <td style={{ whiteSpace: "nowrap", paddingLeft: "20px" }}>
+                  {tour.date}
+                </td>
+                <td style={{ whiteSpace: "nowrap", paddingLeft: "20px" }}>
+                  {tour.city}
+                </td>
+                <td style={{ whiteSpace: "nowrap", paddingLeft: "20px" }}>
+                  {tour.venue}
+                </td>
+                <td style={{ whiteSpace: "nowrap", paddingLeft: "20px" }}>
+                  <Button
+                    className="mt-1 mb-1"
+                    size="sm"
+                    style={{ backgroundColor: "#0d6efd", color: "#F2F7FD" }}
+                  >
+                    BUY TICKETS
+                  </Button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </Table>
     </Container>
   );

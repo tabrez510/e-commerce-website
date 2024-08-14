@@ -33,6 +33,8 @@ const CartProvider = (props) => {
         return updatedItems;
       }
 
+      console.log([...prevItems, { ...item, quantity: 1}]);
+
       return [...prevItems, { ...item, quantity: 1 }];
     });
   };

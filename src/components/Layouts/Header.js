@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import CartContext from "../../store/cart-context";
 import {
   Navbar,
@@ -14,9 +14,17 @@ const Header = (props) => {
   const cartCtx = useContext(CartContext);
   const location = useLocation();
   return (
-    <Navbar expand="sm" sticky="top" bg="dark" data-bs-theme="dark" className="shadow-lg">
+    <Navbar
+      expand="sm"
+      sticky="top"
+      bg="dark"
+      data-bs-theme="dark"
+      className="shadow-lg"
+    >
       <Container>
-        <Navbar.Brand>E commerce</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">
+          E commerce
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
         <Navbar.Offcanvas placement="end">
           <Offcanvas.Header closeButton>
@@ -24,23 +32,33 @@ const Header = (props) => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="mx-auto my-auto">
-              <Nav.Link as={NavLink} to="/">HOME</Nav.Link>
-              <Nav.Link as={NavLink} to="/store" >STORE</Nav.Link>
-              <Nav.Link as={NavLink} to="/about" >ABOUT</Nav.Link>
-              <Nav.Link as={NavLink} to="/contact" >CONTACT</Nav.Link>
+              <Nav.Link as={NavLink} to="/">
+                HOME
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/store">
+                STORE
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/about">
+                ABOUT
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/contact">
+                CONTACT
+              </Nav.Link>
             </Nav>
             <Nav className="d-flex flex-row justify-content-between align-items-center">
-              <Nav.Link>
-                <Button variant="primary">Login</Button>
+              <Nav.Link as={NavLink} to='/auth/login'>
+                  <Button variant="primary">Login</Button>
               </Nav.Link>
-              <Nav.Link>
+              <Nav.Link as={NavLink} to='/auth/signup'>
                 <Button variant="outline-primary">Signup</Button>
               </Nav.Link>
-              {location.pathname === "/store" && <Nav.Link>
-                <Button variant="primary" onClick={props.onShow}>
-                  Cart <Badge bg="dark">{cartCtx.items.length}</Badge>
-                </Button>
-              </Nav.Link>}
+              {location.pathname.startsWith("/store") && (
+                <Nav.Link>
+                  <Button variant="primary" onClick={props.onShow}>
+                    Cart <Badge bg="dark">{cartCtx.items.length}</Badge>
+                  </Button>
+                </Nav.Link>
+              )}
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
