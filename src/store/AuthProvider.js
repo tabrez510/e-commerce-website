@@ -6,20 +6,24 @@ const AuthProvider = (props) => {
   const [token, setToken] = useState(initialToken);
 
   const isLoggedIn = !!token;
-  const login = (token) => {
+  const login = (token, email) => {
     localStorage.setItem("Token", token);
+    localStorage.setItem('email', email);
     setToken(token);
   };
+
   const logout = () => {
     setToken(null);
     localStorage.removeItem("Token");
+    localStorage.removeItem("email");
   };
+
 
   const contextValue = {
     token: token,
     isLoggedIn: isLoggedIn,
     login: login,
-    logout: logout,
+    logout: logout
   };
   return (
     <AuthContext.Provider value={contextValue}>

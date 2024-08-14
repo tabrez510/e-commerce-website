@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  redirect,
+  Routes,
+  Route,
+  Navigate,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Store from "./pages/Store";
@@ -15,23 +15,23 @@ import AuthContext from "./store/auth-context";
 
 function App() {
   const authCtx = useContext(AuthContext);
-  // console.log(authCtx.isLoggedIn);
-  const requireAuth = async () => {
-    if (!authCtx.isLoggedIn) {
-      return redirect("/auth/login");
-    }
-    return null;
-  };
-  const router = createBrowserRouter([
-    { path: "/", element: <Home /> },
-    { path: "/store", element: <Store />, loader: requireAuth },
-    { path: "/about", element: <About /> },
-    { path: "/contact", element: <Contact /> },
-    { path: "/store/:productId", element: <ProductDetails /> },
-    { path: "/auth/login", element: <LoginPage /> },
-    { path: "/auth/signup", element: <SignupPage /> },
-  ]);
-  return <RouterProvider router={router} />;
+  return(
+    <Routes>
+      <Route path="/" element={<Home />} />
+      
+      <Route path="/store" element={
+        authCtx.isLoggedIn ? <Store /> : <Navigate to="/auth/login" />
+      } />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      
+      <Route path="/store/:productId" element={
+        authCtx.isLoggedIn ? <ProductDetails /> : <Navigate to="/auth/login" />
+      } />
+      <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/auth/signup" element={<SignupPage />} />
+    </Routes>
+  );
 }
 
 export default App;

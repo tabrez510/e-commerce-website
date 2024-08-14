@@ -12,7 +12,7 @@ const CartItem = (props) => {
         
     }
     const removeFromCart = () => {
-        cartCtx.removeFromCart(props.cart);
+        cartCtx.removeFromCart(props.cart.id);
     }
 
     let cartTitle = props.cart.title;

@@ -37,7 +37,7 @@ const Login = () => {
         throw new Error(error);
       }
       
-      authCtx.login(data.idToken);
+      authCtx.login(data.idToken, data.email);
       emailInputRef.current.value = '';
       passwordInputRef.current.value = '';
       navigate('/store');

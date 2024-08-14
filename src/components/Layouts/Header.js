@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import CartContext from "../../store/cart-context";
+import AuthContext from "../../store/auth-context";
 import {
   Navbar,
   Container,
@@ -12,7 +13,11 @@ import { NavLink, useLocation } from "react-router-dom";
 
 const Header = (props) => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
   const location = useLocation();
+  const logoutUser = () => {
+    authCtx.logout();
+  }
   return (
     <Navbar
       expand="sm"
@@ -46,12 +51,15 @@ const Header = (props) => {
               </Nav.Link>
             </Nav>
             <Nav className="d-flex flex-row justify-content-between align-items-center">
-              <Nav.Link as={NavLink} to='/auth/login'>
+              {!authCtx.isLoggedIn && <Nav.Link as={NavLink} to='/auth/login'>
                   <Button variant="primary">Login</Button>
-              </Nav.Link>
-              <Nav.Link as={NavLink} to='/auth/signup'>
+              </Nav.Link>}
+              {!authCtx.isLoggedIn && <Nav.Link as={NavLink} to='/auth/signup'>
                 <Button variant="outline-primary">Signup</Button>
-              </Nav.Link>
+              </Nav.Link>}
+              {authCtx.isLoggedIn && <Nav.Link>
+                <Button variant="danger" onClick={logoutUser}>Logout</Button>
+              </Nav.Link>}
               {location.pathname.startsWith("/store") && (
                 <Nav.Link>
                   <Button variant="primary" onClick={props.onShow}>

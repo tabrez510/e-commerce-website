@@ -26,6 +26,7 @@ const ContactUsForm = () => {
     nameRef.current.value = "";
     emailRef.current.value = "";
     phoneRef.current.value = "";
+    alert('Your response has been submitted');
   };
   return (
     <Container
